@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import PlantsView from './Layouts/PlantsView';
+import PlantDetailsView from './Layouts/PlantDetailsView';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Hello from a staging branch</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path="/plants">
+            <Switch>
+              <Route exact path="/plants">
+                <PlantsView />
+              </Route>
+              <Route path="/plants/:plantId">
+                <PlantDetailsView />
+              </Route>
+            </Switch>
+          </Route>
+          <Route path="/">
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
